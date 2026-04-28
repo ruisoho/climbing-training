@@ -15,13 +15,14 @@
   <div class="app">
     <header class="hero">
       <h1>Beginner Climbing Plan</h1>
-      <p>V0–V3 climbing, strength, indoor cycling, outdoor walks/runs, and simple progress tracking.</p>
+      <p>V0–V3 climbing, strength, indoor cycling, outdoor walks/runs, readiness, pain tracking, and training load.</p>
     </header>
 
     <nav class="tabs">
       <button class="tab-btn active" data-tab="plan">Plan</button>
-      <button class="tab-btn" data-tab="exercises">Exercises</button>
+      <button class="tab-btn" data-tab="dashboard">Dashboard</button>
       <button class="tab-btn" data-tab="tracker">Tracker</button>
+      <button class="tab-btn" data-tab="exercises">Exercises</button>
     </nav>
 
     <!-- PLAN -->
@@ -29,7 +30,7 @@
       <div class="card">
         <h2>Weekly Structure</h2>
         <p class="muted">
-          Beginner plan. Goal: technique, consistency, aerobic base, and injury prevention.
+          Beginner plan. Goal: technique, consistency, aerobic base, strength foundation, and injury prevention.
         </p>
 
         <div class="pill-row">
@@ -42,7 +43,7 @@
         <div class="week-grid">
           <article class="day-card">
             <strong>Day 1 — Volume Climbing</strong>
-            <span>V0–V2 · 45–60 min</span>
+            <span>V0–V2 · 45–60 min · RPE 4–6</span>
             <ul>
               <li>20–30 easy problems.</li>
               <li>70% V0–V1, 30% V2.</li>
@@ -53,7 +54,7 @@
 
           <article class="day-card">
             <strong>Day 2 — Upper Strength + Indoor Cycling</strong>
-            <span>Strength 30–40 min · Bike 20–30 min</span>
+            <span>Strength 30–40 min · Bike 20–30 min · RPE 3–5</span>
             <ul>
               <li>Assisted pull-ups: 3 x 5–8.</li>
               <li>Push-ups: 3 x 8–12.</li>
@@ -64,7 +65,7 @@
 
           <article class="day-card">
             <strong>Day 3 — Outdoor Walk / Easy Run</strong>
-            <span>30–45 min</span>
+            <span>30–45 min · RPE 2–4</span>
             <ul>
               <li>Fast walk or very easy jog.</li>
               <li>You must be able to speak.</li>
@@ -75,7 +76,7 @@
 
           <article class="day-card">
             <strong>Day 4 — Limit Climbing</strong>
-            <span>V2–V3 · 45–60 min</span>
+            <span>V2–V3 · 45–60 min · RPE 6–8</span>
             <ul>
               <li>3–6 harder problems.</li>
               <li>3–5 attempts per problem.</li>
@@ -86,7 +87,7 @@
 
           <article class="day-card">
             <strong>Day 5 — Lower Body + Core</strong>
-            <span>35–45 min</span>
+            <span>35–45 min · RPE 4–6</span>
             <ul>
               <li>Squats: 3 x 10–15.</li>
               <li>Glute bridges: 3 x 12.</li>
@@ -98,7 +99,7 @@
 
           <article class="day-card">
             <strong>Day 6 — Easy Climb + Walk</strong>
-            <span>V0–V1 · 30–45 min + walk 20–30 min</span>
+            <span>V0–V1 · 30–45 min + walk 20–30 min · RPE 2–4</span>
             <ul>
               <li>Technique only.</li>
               <li>No hard attempts.</li>
@@ -163,6 +164,226 @@
         <div class="warning">
           Stop immediately if you feel finger pain, elbow pain, shoulder pain, or sharp joint pain.
         </div>
+      </div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="tab-section">
+      <div class="card">
+        <h2>Readiness</h2>
+        <div id="readinessBox" class="readiness-box neutral">
+          <strong id="readinessStatus">No data yet</strong>
+          <p id="readinessReason">Add a session to calculate readiness.</p>
+        </div>
+
+        <div id="deloadBox" class="deload-box hidden">
+          <strong>Deload Week</strong>
+          <p>Reduce climbing volume by 30–40%. No hard limit climbing. Keep easy cycling and walking.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>This Week</h2>
+
+        <div class="summary-grid">
+          <div class="stat">
+            <span>Sessions</span>
+            <strong id="weekSessions">0</strong>
+          </div>
+
+          <div class="stat">
+            <span>Minutes</span>
+            <strong id="weekMinutes">0</strong>
+          </div>
+
+          <div class="stat">
+            <span>Training load</span>
+            <strong id="weekLoad">0</strong>
+          </div>
+
+          <div class="stat">
+            <span>Average pain</span>
+            <strong id="weekPain">0</strong>
+          </div>
+
+          <div class="stat">
+            <span>Highest grade</span>
+            <strong id="weekGrade">-</strong>
+          </div>
+
+          <div class="stat">
+            <span>Hard sessions</span>
+            <strong id="weekHard">0</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Plan Compliance</h2>
+
+        <div class="compliance-row">
+          <span>Climbing</span>
+          <strong id="climbCompliance">0 / 3</strong>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar" id="climbBar"></div>
+        </div>
+
+        <div class="compliance-row">
+          <span>Strength</span>
+          <strong id="strengthCompliance">0 / 2</strong>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar" id="strengthBar"></div>
+        </div>
+
+        <div class="compliance-row">
+          <span>Cardio</span>
+          <strong id="cardioCompliance">0 / 2</strong>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar" id="cardioBar"></div>
+        </div>
+
+        <div class="compliance-row">
+          <span>Rest</span>
+          <strong id="restCompliance">0 / 1</strong>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar" id="restBar"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Training Load</h2>
+        <canvas id="loadChart"></canvas>
+      </div>
+
+      <div class="card">
+        <h2>Climbing Grade Progress</h2>
+        <canvas id="gradeChart"></canvas>
+      </div>
+
+      <div class="card">
+        <h2>Training Minutes</h2>
+        <canvas id="minutesChart"></canvas>
+      </div>
+    </section>
+
+    <!-- TRACKER -->
+    <section id="tracker" class="tab-section">
+      <div class="card">
+        <h2>Add Training Session</h2>
+
+        <label for="date">Date</label>
+        <input type="date" id="date" />
+
+        <label for="type">Session Type</label>
+        <select id="type">
+          <option value="Volume Climbing">Volume Climbing</option>
+          <option value="Limit Climbing">Limit Climbing</option>
+          <option value="Easy Climbing">Easy Climbing</option>
+          <option value="Upper Strength">Upper Strength</option>
+          <option value="Lower Strength">Lower Strength</option>
+          <option value="Indoor Cycling">Indoor Cycling</option>
+          <option value="Outdoor Walk">Outdoor Walk</option>
+          <option value="Outdoor Run">Outdoor Run</option>
+          <option value="Rest">Rest</option>
+        </select>
+
+        <label for="grade">Max Climbing Grade</label>
+        <select id="grade">
+          <option value="">Not climbing</option>
+          <option value="V0">V0</option>
+          <option value="V1">V1</option>
+          <option value="V2">V2</option>
+          <option value="V3">V3</option>
+        </select>
+
+        <label for="duration">Duration in minutes</label>
+        <input type="number" id="duration" min="0" inputmode="numeric" placeholder="Example: 45" />
+
+        <label for="problems">Number of climbing problems</label>
+        <input type="number" id="problems" min="0" inputmode="numeric" placeholder="Example: 22" />
+
+        <label for="distance">Distance in km</label>
+        <input type="number" id="distance" min="0" step="0.1" inputmode="decimal" placeholder="For walk/run only" />
+
+        <label for="rpe">RPE 1–10</label>
+        <select id="rpe">
+          <option value="1">1 — Very easy</option>
+          <option value="2">2 — Very easy</option>
+          <option value="3">3 — Easy</option>
+          <option value="4" selected>4 — Easy</option>
+          <option value="5">5 — Moderate</option>
+          <option value="6">6 — Moderate</option>
+          <option value="7">7 — Hard</option>
+          <option value="8">8 — Hard</option>
+          <option value="9">9 — Maximal</option>
+          <option value="10">10 — Maximal</option>
+        </select>
+
+        <label for="pain">Pain Level 0–10</label>
+        <select id="pain">
+          <option value="0" selected>0 — No pain</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3 — Mild</option>
+          <option value="4">4</option>
+          <option value="5">5 — Warning</option>
+          <option value="6">6</option>
+          <option value="7">7 — High</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10 — Severe</option>
+        </select>
+
+        <div class="checkbox-grid">
+          <label class="checkbox-label">
+            <input type="checkbox" id="fingerPain" />
+            Finger pain
+          </label>
+
+          <label class="checkbox-label">
+            <input type="checkbox" id="shoulderPain" />
+            Shoulder pain
+          </label>
+        </div>
+
+        <label for="sleep">Sleep Quality</label>
+        <select id="sleep">
+          <option value="Poor">Poor</option>
+          <option value="OK" selected>OK</option>
+          <option value="Good">Good</option>
+        </select>
+
+        <label for="energy">Energy Before Session</label>
+        <select id="energy">
+          <option value="Low">Low</option>
+          <option value="Normal" selected>Normal</option>
+          <option value="High">High</option>
+        </select>
+
+        <label for="notes">Notes</label>
+        <textarea id="notes" placeholder="How did it feel? Finger pain? Shoulder pain? What went well?"></textarea>
+
+        <div class="load-preview">
+          Training Load Preview: <strong id="loadPreview">0</strong>
+        </div>
+
+        <button class="primary" id="saveBtn">Save Session</button>
+      </div>
+
+      <div class="card">
+        <h2>History</h2>
+        <div id="history"></div>
+
+        <button class="secondary" id="exportBtn">Export Data</button>
+
+        <label for="importFile" class="import-label">Import Data</label>
+        <input type="file" id="importFile" accept="application/json" />
+
+        <button class="danger" id="clearBtn">Clear All Data</button>
       </div>
     </section>
 
@@ -276,110 +497,6 @@
             </ul>
           </article>
         </div>
-      </div>
-    </section>
-
-    <!-- TRACKER -->
-    <section id="tracker" class="tab-section">
-      <div class="card">
-        <h2>Add Training Session</h2>
-
-        <label for="date">Date</label>
-        <input type="date" id="date" />
-
-        <label for="type">Session Type</label>
-        <select id="type">
-          <option value="Volume Climbing">Volume Climbing</option>
-          <option value="Limit Climbing">Limit Climbing</option>
-          <option value="Easy Climbing">Easy Climbing</option>
-          <option value="Upper Strength">Upper Strength</option>
-          <option value="Lower Strength">Lower Strength</option>
-          <option value="Indoor Cycling">Indoor Cycling</option>
-          <option value="Outdoor Walk">Outdoor Walk</option>
-          <option value="Outdoor Run">Outdoor Run</option>
-          <option value="Rest">Rest</option>
-        </select>
-
-        <label for="grade">Max Climbing Grade</label>
-        <select id="grade">
-          <option value="">Not climbing</option>
-          <option value="V0">V0</option>
-          <option value="V1">V1</option>
-          <option value="V2">V2</option>
-          <option value="V3">V3</option>
-        </select>
-
-        <label for="duration">Duration in minutes</label>
-        <input type="number" id="duration" min="0" inputmode="numeric" placeholder="Example: 45" />
-
-        <label for="problems">Number of climbing problems</label>
-        <input type="number" id="problems" min="0" inputmode="numeric" placeholder="Example: 22" />
-
-        <label for="distance">Distance in km</label>
-        <input type="number" id="distance" min="0" step="0.1" inputmode="decimal" placeholder="For walk/run only" />
-
-        <label for="rpe">Effort level</label>
-        <select id="rpe">
-          <option value="Easy">Easy</option>
-          <option value="Moderate">Moderate</option>
-          <option value="Hard">Hard</option>
-          <option value="Too Hard">Too Hard</option>
-        </select>
-
-        <label for="notes">Notes</label>
-        <textarea id="notes" placeholder="How did it feel? Finger pain? Shoulder pain? What went well?"></textarea>
-
-        <button class="primary" id="saveBtn">Save Session</button>
-      </div>
-
-      <div class="card">
-        <h2>Progress Summary</h2>
-
-        <div class="summary-grid">
-          <div class="stat">
-            <span>Total sessions</span>
-            <strong id="totalSessions">0</strong>
-          </div>
-
-          <div class="stat">
-            <span>Total minutes</span>
-            <strong id="totalMinutes">0</strong>
-          </div>
-
-          <div class="stat">
-            <span>Climbing sessions</span>
-            <strong id="climbSessions">0</strong>
-          </div>
-
-          <div class="stat">
-            <span>Cardio sessions</span>
-            <strong id="cardioSessions">0</strong>
-          </div>
-        </div>
-
-        <p class="muted">Weekly target: 6 training sessions including easy days.</p>
-        <div class="bar-wrap">
-          <div class="bar" id="weeklyBar"></div>
-        </div>
-        <p id="weeklyText" class="muted">0 of 6 weekly training sessions completed.</p>
-      </div>
-
-      <div class="card">
-        <h2>Climbing Grade Progress</h2>
-        <canvas id="gradeChart"></canvas>
-      </div>
-
-      <div class="card">
-        <h2>Training Minutes</h2>
-        <canvas id="minutesChart"></canvas>
-      </div>
-
-      <div class="card">
-        <h2>History</h2>
-        <div id="history"></div>
-
-        <button class="secondary" id="exportBtn">Export Data</button>
-        <button class="danger" id="clearBtn">Clear All Data</button>
       </div>
     </section>
   </div>
