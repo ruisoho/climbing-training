@@ -15,7 +15,7 @@
   <div class="app">
     <header class="hero">
       <h1>Beginner Climbing Plan</h1>
-      <p>V0–V3 climbing, strength, indoor cycling, outdoor walks/runs, readiness, pain tracking, and training load.</p>
+      <p>V0–V3 climbing, conditioning, readiness, pain tracking, BETA7 boulder logging, and training load.</p>
     </header>
 
     <nav class="tabs">
@@ -25,13 +25,10 @@
       <button class="tab-btn" data-tab="exercises">Exercises</button>
     </nav>
 
-    <!-- PLAN -->
     <section id="plan" class="tab-section active">
       <div class="card">
         <h2>Weekly Structure</h2>
-        <p class="muted">
-          Beginner plan. Goal: technique, consistency, aerobic base, strength foundation, and injury prevention.
-        </p>
+        <p class="muted">Beginner plan. Goal: technique, consistency, aerobic base, strength foundation, and injury prevention.</p>
 
         <div class="pill-row">
           <span class="pill">3 climbing sessions</span>
@@ -70,7 +67,6 @@
               <li>Fast walk or very easy jog.</li>
               <li>You must be able to speak.</li>
               <li>No intervals yet.</li>
-              <li>Goal: recovery and base endurance.</li>
             </ul>
           </article>
 
@@ -93,7 +89,6 @@
               <li>Glute bridges: 3 x 12.</li>
               <li>Split squats: 3 x 8 each side.</li>
               <li>Plank: 3 x 30–45 sec.</li>
-              <li>Side plank: 3 x 20–30 sec each side.</li>
             </ul>
           </article>
 
@@ -104,7 +99,6 @@
               <li>Technique only.</li>
               <li>No hard attempts.</li>
               <li>Finish fresh.</li>
-              <li>This is not a max-effort day.</li>
             </ul>
           </article>
 
@@ -112,9 +106,7 @@
             <strong>Day 7 — Full Rest</strong>
             <span>No training</span>
             <ul>
-              <li>Sleep.</li>
-              <li>Food.</li>
-              <li>Recovery.</li>
+              <li>Sleep, food, recovery.</li>
               <li>Light mobility only if needed.</li>
             </ul>
           </article>
@@ -167,7 +159,6 @@
       </div>
     </section>
 
-    <!-- DASHBOARD -->
     <section id="dashboard" class="tab-section">
       <div class="card">
         <h2>Readiness</h2>
@@ -186,72 +177,31 @@
         <h2>This Week</h2>
 
         <div class="summary-grid">
-          <div class="stat">
-            <span>Sessions</span>
-            <strong id="weekSessions">0</strong>
-          </div>
-
-          <div class="stat">
-            <span>Minutes</span>
-            <strong id="weekMinutes">0</strong>
-          </div>
-
-          <div class="stat">
-            <span>Training load</span>
-            <strong id="weekLoad">0</strong>
-          </div>
-
-          <div class="stat">
-            <span>Average pain</span>
-            <strong id="weekPain">0</strong>
-          </div>
-
-          <div class="stat">
-            <span>Highest grade</span>
-            <strong id="weekGrade">-</strong>
-          </div>
-
-          <div class="stat">
-            <span>Hard sessions</span>
-            <strong id="weekHard">0</strong>
-          </div>
+          <div class="stat"><span>Sessions</span><strong id="weekSessions">0</strong></div>
+          <div class="stat"><span>Minutes</span><strong id="weekMinutes">0</strong></div>
+          <div class="stat"><span>Training load</span><strong id="weekLoad">0</strong></div>
+          <div class="stat"><span>Average pain</span><strong id="weekPain">0</strong></div>
+          <div class="stat"><span>Highest grade</span><strong id="weekGrade">-</strong></div>
+          <div class="stat"><span>Hard sessions</span><strong id="weekHard">0</strong></div>
+          <div class="stat"><span>Boulders logged</span><strong id="weekBoulders">0</strong></div>
+          <div class="stat"><span>BETA7 routes</span><strong id="weekBeta7">0</strong></div>
         </div>
       </div>
 
       <div class="card">
         <h2>Plan Compliance</h2>
 
-        <div class="compliance-row">
-          <span>Climbing</span>
-          <strong id="climbCompliance">0 / 3</strong>
-        </div>
-        <div class="bar-wrap">
-          <div class="bar" id="climbBar"></div>
-        </div>
+        <div class="compliance-row"><span>Climbing</span><strong id="climbCompliance">0 / 3</strong></div>
+        <div class="bar-wrap"><div class="bar" id="climbBar"></div></div>
 
-        <div class="compliance-row">
-          <span>Strength</span>
-          <strong id="strengthCompliance">0 / 2</strong>
-        </div>
-        <div class="bar-wrap">
-          <div class="bar" id="strengthBar"></div>
-        </div>
+        <div class="compliance-row"><span>Strength</span><strong id="strengthCompliance">0 / 2</strong></div>
+        <div class="bar-wrap"><div class="bar" id="strengthBar"></div></div>
 
-        <div class="compliance-row">
-          <span>Cardio</span>
-          <strong id="cardioCompliance">0 / 2</strong>
-        </div>
-        <div class="bar-wrap">
-          <div class="bar" id="cardioBar"></div>
-        </div>
+        <div class="compliance-row"><span>Cardio</span><strong id="cardioCompliance">0 / 2</strong></div>
+        <div class="bar-wrap"><div class="bar" id="cardioBar"></div></div>
 
-        <div class="compliance-row">
-          <span>Rest</span>
-          <strong id="restCompliance">0 / 1</strong>
-        </div>
-        <div class="bar-wrap">
-          <div class="bar" id="restBar"></div>
-        </div>
+        <div class="compliance-row"><span>Rest</span><strong id="restCompliance">0 / 1</strong></div>
+        <div class="bar-wrap"><div class="bar" id="restBar"></div></div>
       </div>
 
       <div class="card">
@@ -270,7 +220,6 @@
       </div>
     </section>
 
-    <!-- TRACKER -->
     <section id="tracker" class="tab-section">
       <div class="card">
         <h2>Add Training Session</h2>
@@ -339,15 +288,8 @@
         </select>
 
         <div class="checkbox-grid">
-          <label class="checkbox-label">
-            <input type="checkbox" id="fingerPain" />
-            Finger pain
-          </label>
-
-          <label class="checkbox-label">
-            <input type="checkbox" id="shoulderPain" />
-            Shoulder pain
-          </label>
+          <label class="checkbox-label"><input type="checkbox" id="fingerPain" /> Finger pain</label>
+          <label class="checkbox-label"><input type="checkbox" id="shoulderPain" /> Shoulder pain</label>
         </div>
 
         <label for="sleep">Sleep Quality</label>
@@ -364,6 +306,47 @@
           <option value="High">High</option>
         </select>
 
+        <div class="subsection">
+          <h3>Boulder / BETA7 QR Data</h3>
+
+          <label for="beta7Raw">Paste BETA7 QR URL or encoded QR text</label>
+          <textarea id="beta7Raw" placeholder="Example: https%3A%2F%2Fbeta7.app%2Froute%2F..."></textarea>
+
+          <button type="button" class="secondary" id="parseBeta7Btn">Decode BETA7 URL</button>
+
+          <label for="beta7Url">BETA7 Route URL</label>
+          <input type="url" id="beta7Url" placeholder="https://beta7.app/route/..." />
+
+          <label for="beta7RouteId">Route ID</label>
+          <input type="text" id="beta7RouteId" placeholder="Auto-filled from URL if possible" />
+
+          <label for="boulderGym">Gym</label>
+          <input type="text" id="boulderGym" placeholder="Example: Berta Block Boulderhalle" />
+
+          <label for="boulderSector">Sector / Wall</label>
+          <input type="text" id="boulderSector" placeholder="Example: Ping Pong" />
+
+          <label for="boulderNumber">Route Number</label>
+          <input type="text" id="boulderNumber" placeholder="Example: 16892" />
+
+          <label for="boulderGrade">Boulder Grade</label>
+          <input type="text" id="boulderGrade" placeholder="Example: 6A+ or V3" />
+
+          <label for="boulderCircuit">Circuit / Color</label>
+          <input type="text" id="boulderCircuit" placeholder="Example: BLAU" />
+
+          <label for="boulderStyle">Style Tags</label>
+          <input type="text" id="boulderStyle" placeholder="Example: technique, footwork, power" />
+
+          <label for="boulderAttempts">Attempts on this boulder</label>
+          <input type="number" id="boulderAttempts" min="0" inputmode="numeric" placeholder="Example: 4" />
+
+          <div class="checkbox-grid">
+            <label class="checkbox-label"><input type="checkbox" id="boulderSent" /> Sent</label>
+            <label class="checkbox-label"><input type="checkbox" id="boulderFlashed" /> Flashed</label>
+          </div>
+        </div>
+
         <label for="notes">Notes</label>
         <textarea id="notes" placeholder="How did it feel? Finger pain? Shoulder pain? What went well?"></textarea>
 
@@ -378,16 +361,16 @@
         <h2>History</h2>
         <div id="history"></div>
 
-        <button class="secondary" id="exportBtn">Export Data</button>
+        <button class="secondary" id="exportBtn">Export JSON</button>
+        <button class="secondary" id="exportCsvBtn">Export CSV</button>
 
-        <label for="importFile" class="import-label">Import Data</label>
+        <label for="importFile" class="import-label">Import JSON</label>
         <input type="file" id="importFile" accept="application/json" />
 
         <button class="danger" id="clearBtn">Clear All Data</button>
       </div>
     </section>
 
-    <!-- EXERCISES -->
     <section id="exercises" class="tab-section">
       <div class="card">
         <h2>Exercise Guide</h2>
@@ -400,7 +383,6 @@
               <li>Move slowly.</li>
               <li>Place feet quietly.</li>
               <li>Keep hips close to the wall.</li>
-              <li>Do not fight every move.</li>
             </ul>
           </article>
 
@@ -411,7 +393,6 @@
               <li>Rest properly.</li>
               <li>Focus on one move at a time.</li>
               <li>Stop before sloppy attempts.</li>
-              <li>Never jump blindly into moves.</li>
             </ul>
           </article>
 
@@ -422,7 +403,6 @@
               <li>Easy breathing.</li>
               <li>No sprinting.</li>
               <li>You should be able to talk.</li>
-              <li>Used for recovery and aerobic base.</li>
             </ul>
           </article>
 
@@ -432,7 +412,6 @@
               <li>30–45 minutes.</li>
               <li>Walk fast or jog slowly.</li>
               <li>Stay conversational.</li>
-              <li>No hard running yet.</li>
             </ul>
           </article>
 
@@ -440,9 +419,7 @@
             <h3>Assisted Pull-Up</h3>
             <ul>
               <li>3 sets of 5–8 reps.</li>
-              <li>Full control.</li>
               <li>No swinging.</li>
-              <li>Use assistance if needed.</li>
               <li>Stop 2 reps before failure.</li>
             </ul>
           </article>
@@ -453,7 +430,6 @@
               <li>3 sets of 8–10 reps.</li>
               <li>Keep arms mostly straight.</li>
               <li>Pull shoulder blades down.</li>
-              <li>Move slowly.</li>
             </ul>
           </article>
 
@@ -462,7 +438,6 @@
             <ul>
               <li>3 sets of 8–12 reps.</li>
               <li>Straight body.</li>
-              <li>Chest moves toward floor.</li>
               <li>Use knees if needed.</li>
             </ul>
           </article>
@@ -472,28 +447,7 @@
             <ul>
               <li>3 sets of 10–15 reps.</li>
               <li>Knees track over toes.</li>
-              <li>Controlled depth.</li>
               <li>No knee collapse inward.</li>
-            </ul>
-          </article>
-
-          <article class="exercise">
-            <h3>Glute Bridge</h3>
-            <ul>
-              <li>3 sets of 12 reps.</li>
-              <li>Feet flat.</li>
-              <li>Squeeze glutes at the top.</li>
-              <li>Do not overarch lower back.</li>
-            </ul>
-          </article>
-
-          <article class="exercise">
-            <h3>Plank</h3>
-            <ul>
-              <li>3 sets of 30–45 seconds.</li>
-              <li>Ribs down.</li>
-              <li>Glutes tight.</li>
-              <li>No sagging lower back.</li>
             </ul>
           </article>
         </div>
