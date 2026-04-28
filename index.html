@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Beginner Climbing Training Plan</title>
+
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --card: #ffffff;
+      --text: #16202a;
+      --muted: #667085;
+      --accent: #1f7a8c;
+      --accent-dark: #155e6c;
+      --soft: #e8f3f5;
+      --border: #d9e2e7;
+      --danger: #b42318;
+      --success: #157347;
+      --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .app {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 16px;
+      padding-bottom: 48px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1f7a8c, #0f3f4a);
+      color: white;
+      border-radius: 22px;
+      padding: 24px 18px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 1.8rem;
+      line-height: 1.15;
+    }
+
+    header p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 0.98rem;
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      padding: 8px 0;
+      z-index: 10;
+    }
+
+    .tab-btn {
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      padding: 11px 8px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    section {
+      display: none;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      margin: 4px 0 14px;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      margin: 0 0 8px;
+    }
+
+    h4 {
+      margin: 12px 0 6px;
+      font-size: 1rem;
+    }
+
+    p {
+      margin: 8px 0;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0;
+    }
+
+    .pill {
+      background: var(--soft);
+      color: var(--accent-dark);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .week-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .day-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      background: #fbfdfe;
+    }
+
+    .day-card strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 3px;
+    }
+
+    .day-card span {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin: 8px 0;
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 16px;
+      margin: 10px 0 12px;
+      display: block;
+      background: #ddd;
+    }
+
+    .exercise-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .exercise {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px;
+      background: #fbfdfe;
+    }
+
+    .exercise img {
+      height: 190px;
+      object-fit: cover;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      font-size: 1rem;
+      background: white;
+      color: var(--text);
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 13px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+
+    .primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .primary:hover {
+      background: var(--accent-dark);
+    }
+
+    .secondary {
+      background: #eef2f5;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .danger {
+      background: #fee4e2;
+      color: var(--danger);
+      border: 1px solid #fecdca;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .stat {
+      background: #fbfdfe;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px;
+    }
+
+    .stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .stat strong {
+      font-size: 1.35rem;
+    }
+
+    .history-item {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px;
+      background: #fbfdfe;
+      margin-bottom: 10px;
+    }
+
+    .history-item-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .history-item h4 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .history-item small {
+      color: var(--muted);
+    }
+
+    .delete-btn {
+      width: auto;
+      margin: 0;
+      padding: 6px 9px;
+      border-radius: 10px;
+      background: #fee4e2;
+      color: var(--danger);
+      font-size: 0.8rem;
+    }
+
+    .bar-wrap {
+      height: 12px;
+      background: #e9eef2;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 8px 0 12px;
+    }
+
+    .bar {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+
+    canvas {
+      width: 100%;
+      max-height: 280px;
+    }
+
+    .warning {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #7c2d12;
+      border-radius: 16px;
+      padding: 12px;
+      margin-top: 10px;
+    }
+
+    @media (min-width: 720px) {
+      .week-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .exercise-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      header h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <header>
+      <h1>Beginner Climbing Plan V0–V3</h1>
+      <p>Simple weekly plan with climbing, indoor cycling, walking/running, strength, and progress tracking.</p>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab-btn active" onclick="showTab('plan', this)">Plan</button>
+      <button class="tab-btn" onclick="showTab('exercises', this)">Exercises</button>
+      <button class="tab-btn" onclick="showTab('tracker', this)">Tracker</button>
+    </nav>
+
+    <!-- PLAN -->
+    <section id="plan" class="active">
+      <div class="card">
+        <h2>Weekly Training Structure</h2>
+        <p class="muted">Beginner level. Main goal: build technique, aerobic base, strength foundation, and avoid finger/shoulder overload.</p>
+
+        <div class="pill-row">
+          <span class="pill">3 climbing sessions</span>
+          <span class="pill">2 strength sessions</span>
+          <span class="pill">2 conditioning sessions</span>
+          <span class="pill">1 full rest day</span>
+        </div>
+
+        <div class="week-grid">
+          <div class="day-card">
+            <strong>Day 1 — Volume Climbing</strong>
+            <span>V0–V2 · 45–60 min</span>
+            <ul>
+              <li>20–30 easy problems.</li>
+              <li>70% V0–V1, 30% V2.</li>
+              <li>Silent feet. Slow movement. No rushing.</li>
+            </ul>
+          </div>
+
+          <div class="day-card">
+            <strong>Day 2 — Upper Strength + Indoor Cycling</strong>
+            <span>Strength 30–40 min · Bike 20–30 min</span>
+            <ul>
+              <li>Assisted pull-ups, push-ups, scapular work.</li>
+              <li>Indoor bike in easy Zone 2.</li>
+              <li>No max finger training.</li>
+            </ul>
+          </div>
+
+          <div class="day-card">
+            <strong>Day 3 — Outdoor Walk / Easy Run</strong>
+            <span>30–45 min</span>
+            <ul>
+              <li>Walk fast or jog slowly.</li>
+              <li>You must be able to speak.</li>
+              <li>No hard intervals yet.</li>
+            </ul>
+          </div>
+
+          <div class="day-card">
+            <strong>Day 4 — Limit Climbing</strong>
+            <span>V2–V3 · 45–60 min</span>
+            <ul>
+              <li>3–6 harder problems.</li>
+              <li>3–5 attempts each.</li>
+              <li>Rest 2–3 min between attempts.</li>
+            </ul>
+          </div>
+
+          <div class="day-card">
+            <strong>Day 5 — Lower Body + Core</strong>
+            <span>35–45 min</span>
+            <ul>
+              <li>Squats, glute bridges, split squats.</li>
+              <li>Plank and side plank.</li>
+              <li>Build heel-hook and body-tension base.</li>
+            </ul>
+          </div>
+
+          <div class="day-card">
+            <strong>Day 6 — Easy Climb + Walk</strong>
+            <span>V0–V1 · 30–45 min + walk 20–30 min</span>
+            <ul>
+              <li>Technique only.</li>
+              <li>No hard attempts.</li>
+              <li>Finish feeling fresh.</li>
+            </ul>
+          </div>
+
+          <div class="day-card">
+            <strong>Day 7 — Full Rest</strong>
+            <span>No training</span>
+            <ul>
+              <li>Sleep, food, recovery.</li>
+              <li>Light mobility only if needed.</li>
+              <li>Finger pain means more rest.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>8-Week Progression</h2>
+
+        <h4>Weeks 1–2: Base</h4>
+        <ul>
+          <li>Climb mostly V0–V1.</li>
+          <li>Only test V2 when movement is controlled.</li>
+          <li>Bike/walk easy.</li>
+        </ul>
+
+        <h4>Weeks 3–4: Build</h4>
+        <ul>
+          <li>Add more V2 volume.</li>
+          <li>Try V3 only on limit day.</li>
+          <li>Add 5–10 minutes to easy cardio if recovery is good.</li>
+        </ul>
+
+        <h4>Week 5: Deload</h4>
+        <ul>
+          <li>Reduce total climbing volume by 30–40%.</li>
+          <li>No hard limit attempts.</li>
+          <li>Keep walking and easy cycling.</li>
+        </ul>
+
+        <h4>Weeks 6–8: Consolidate</h4>
+        <ul>
+          <li>Make V1 automatic.</li>
+          <li>Make V2 stable.</li>
+          <li>Try V3 with good rest, not tired.</li>
+        </ul>
+
+        <div class="warning">
+          Stop a session if finger pain, elbow pain, shoulder pain, or form breakdown appears. Beginner progress comes from consistency, not destruction.
+        </div>
+      </div>
+    </section>
+
+    <!-- EXERCISES -->
+    <section id="exercises">
+      <div class="card">
+        <h2>Exercise Guide</h2>
+        <p class="muted">Images use external URLs. For true offline use, download the images later and replace each image URL with a local file path.</p>
+
+        <div class="exercise-grid">
+          <div class="exercise">
+            <h3>Volume Climbing</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Indoor_climbing_wall.jpg" alt="Indoor climbing wall">
+            <ul>
+              <li>Choose easy routes.</li>
+              <li>Move slowly.</li>
+              <li>Place feet quietly.</li>
+              <li>Do not fight every move.</li>
+            </ul>
+          </div>
+
+          <div class="exercise">
+            <h3>Limit Climbing</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Bouldering.jpg" alt="Bouldering">
+            <ul>
+              <li>Pick V2–V3 problems.</li>
+              <li>Rest properly.</li>
+              <li>Focus on one move at a time.</li>
+              <li>Stop before sloppy attempts.</li>
+            </ul>
+          </div>
+
+          <div class="exercise">
+            <h3>Indoor Cycling</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Stationary_bicycle.jpg" alt="Stationary bike">
+            <ul>
+              <li>20–30 minutes.</li>
+              <li>Easy breathing.</li>
+              <li>No sprinting.</li>
+              <li>Used for recovery and aerobic base.</li>
+            </ul>
+          </div>
+
+          <div class="exercise">
+            <h3>Outdoor Walk / Easy Run</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Walking_path.jpg" alt="Walking path">
+            <ul>
+              <li>30–45 minutes.</li>
+              <li>Walk fast or jog slowly.</li>
+              <li>Stay conversational.</li>
+              <li>Do not turn it into a hard run.</li>
+            </ul>
+          </div>
+
+          <div class="exercise">
+            <h3>Assisted Pull-Up</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Pullups.jpg" alt="Pull up">
+            <ul>
+              <li>3 sets of 5–8 reps.</li>
+              <li>Full control.</li>
+              <li>No swinging.</li>
+              <li>Use assistance if needed.</li>
+            </ul>
+          </div>
+
+          <div class="exercise">
+            <h3>Push-Up</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Push_up.jpg" alt="Push up">
+            <ul>
+              <li>3 sets of 8–12 reps.</li>
+              <li>Straight body.</li>
+              <li>Chest moves toward floor.</li>
+              <li>Use knees if needed.</li>
+            </ul>
+          </div>
+
+          <div class="exercise">
+            <h3>Squat</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Squat_exercise.jpg" alt="Squat">
+            <ul>
+              <li>3 sets of 10–15 reps.</li>
+              <li>Knees track over toes.</li>
+              <li>Controlled depth.</li>
+              <li>No collapsing inward.</li>
+            </ul>
+          </div>
+
+          <div class="exercise">
+            <h3>Plank</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Plank_exercise.jpg" alt="Plank">
+            <ul>
+              <li>3 sets of 30–45 seconds.</li>
+              <li>Ribs down.</li>
+              <li>Glutes tight.</li>
+              <li>No sagging lower back.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRACKER -->
+    <section id="tracker">
+      <div class="card">
+        <h2>Add Training Session</h2>
+
+        <label for="date">Date</label>
+        <input type="date" id="date">
+
+        <label for="type">Session Type</label>
+        <select id="type">
+          <option value="Volume Climbing">Volume Climbing</option>
+          <option value="Limit Climbing">Limit Climbing</option>
+          <option value="Easy Climbing">Easy Climbing</option>
+          <option value="Upper Strength">Upper Strength</option>
+          <option value="Lower Strength">Lower Strength</option>
+          <option value="Indoor Cycling">Indoor Cycling</option>
+          <option value="Outdoor Walk">Outdoor Walk</option>
+          <option value="Outdoor Run">Outdoor Run</option>
+          <option value="Rest">Rest</option>
+        </select>
+
+        <label for="grade">Max Climbing Grade</label>
+        <select id="grade">
+          <option value="">Not climbing</option>
+          <option value="V0">V0</option>
+          <option value="V1">V1</option>
+          <option value="V2">V2</option>
+          <option value="V3">V3</option>
+        </select>
+
+        <label for="duration">Duration in minutes</label>
+        <input type="number" id="duration" min="0" inputmode="numeric" placeholder="Example: 45">
+
+        <label for="problems">Number of climbing problems</label>
+        <input type="number" id="problems" min="0" inputmode="numeric" placeholder="Example: 22">
+
+        <label for="distance">Distance in km</label>
+        <input type="number" id="distance" min="0" step="0.1" inputmode="decimal" placeholder="For walk/run only">
+
+        <label for="rpe">Effort level</label>
+        <select id="rpe">
+          <option value="Easy">Easy</option>
+          <option value="Moderate">Moderate</option>
+          <option value="Hard">Hard</option>
+          <option value="Too Hard">Too Hard</option>
+        </select>
+
+        <label for="notes">Notes</label>
+        <textarea id="notes" placeholder="How did it feel? Finger pain? Shoulder pain? What went well?"></textarea>
+
+        <button class="primary" onclick="addSession()">Save Session</button>
+      </div>
+
+      <div class="card">
+        <h2>Progress Summary</h2>
+
+        <div class="summary-grid">
+          <div class="stat">
+            <span>Total sessions</span>
+            <strong id="totalSessions">0</strong>
+          </div>
+
+          <div class="stat">
+            <span>Total minutes</span>
+            <strong id="totalMinutes">0</strong>
+          </div>
+
+          <div class="stat">
+            <span>Climbing sessions</span>
+            <strong id="climbSessions">0</strong>
+          </div>
+
+          <div class="stat">
+            <span>Cardio sessions</span>
+            <strong id="cardioSessions">0</strong>
+          </div>
+        </div>
+
+        <p class="muted">Weekly target: 5 training days + 1 easy day + 1 rest day.</p>
+        <div class="bar-wrap">
+          <div class="bar" id="weeklyBar"></div>
+        </div>
+        <p id="weeklyText" class="muted">0 of 6 weekly training sessions completed.</p>
+      </div>
+
+      <div class="card">
+        <h2>Climbing Grade Progress</h2>
+        <canvas id="gradeChart"></canvas>
+      </div>
+
+      <div class="card">
+        <h2>Training Minutes</h2>
+        <canvas id="minutesChart"></canvas>
+      </div>
+
+      <div class="card">
+        <h2>History</h2>
+        <div id="history"></div>
+
+        <button class="secondary" onclick="exportData()">Export Data</button>
+        <button class="danger" onclick="clearData()">Clear All Data</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    let sessions = JSON.parse(localStorage.getItem("trainingSessionsV1")) || [];
+    let gradeChart = null;
+    let minutesChart = null;
+
+    const gradeMap = {
+      "V0": 0,
+      "V1": 1,
+      "V2": 2,
+      "V3": 3
+    };
+
+    document.getElementById("date").valueAsDate = new Date();
+
+    function showTab(tabId, button) {
+      document.querySelectorAll("section").forEach(section => {
+        section.classList.remove("active");
+      });
+
+      document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.classList.remove("active");
+      });
+
+      document.getElementById(tabId).classList.add("active");
+      button.classList.add("active");
+
+      if (tabId === "tracker") {
+        renderAll();
+      }
+    }
+
+    function addSession() {
+      const date = document.getElementById("date").value;
+      const type = document.getElementById("type").value;
+      const grade = document.getElementById("grade").value;
+      const duration = Number(document.getElementById("duration").value || 0);
+      const problems = Number(document.getElementById("problems").value || 0);
+      const distance = Number(document.getElementById("distance").value || 0);
+      const rpe = document.getElementById("rpe").value;
+      const notes = document.getElementById("notes").value.trim();
+
+      if (!date) {
+        alert("Add a date.");
+        return;
+      }
+
+      if (duration <= 0 && type !== "Rest") {
+        alert("Add duration in minutes.");
+        return;
+      }
+
+      const session = {
+        id: Date.now(),
+        date,
+        type,
+        grade,
+        duration,
+        problems,
+        distance,
+        rpe,
+        notes
+      };
+
+      sessions.push(session);
+      saveData();
+      clearForm();
+      renderAll();
+    }
+
+    function clearForm() {
+      document.getElementById("type").value = "Volume Climbing";
+      document.getElementById("grade").value = "";
+      document.getElementById("duration").value = "";
+      document.getElementById("problems").value = "";
+      document.getElementById("distance").value = "";
+      document.getElementById("rpe").value = "Easy";
+      document.getElementById("notes").value = "";
+      document.getElementById("date").valueAsDate = new Date();
+    }
+
+    function saveData() {
+      localStorage.setItem("trainingSessionsV1", JSON.stringify(sessions));
+    }
+
+    function deleteSession(id) {
+      sessions = sessions.filter(session => session.id !== id);
+      saveData();
+      renderAll();
+    }
+
+    function clearData() {
+      const confirmed = confirm("Delete all saved training data?");
+      if (!confirmed) return;
+
+      sessions = [];
+      saveData();
+      renderAll();
+    }
+
+    function exportData() {
+      const data = JSON.stringify(sessions, null, 2);
+      const blob = new Blob([data], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "training-sessions.json";
+      a.click();
+
+      URL.revokeObjectURL(url);
+    }
+
+    function renderAll() {
+      renderSummary();
+      renderHistory();
+      renderGradeChart();
+      renderMinutesChart();
+    }
+
+    function renderSummary() {
+      const totalSessions = sessions.length;
+      const totalMinutes = sessions.reduce((sum, s) => sum + Number(s.duration || 0), 0);
+
+      const climbSessions = sessions.filter(s =>
+        s.type.includes("Climbing")
+      ).length;
+
+      const cardioSessions = sessions.filter(s =>
+        s.type.includes("Cycling") ||
+        s.type.includes("Walk") ||
+        s.type.includes("Run")
+      ).length;
+
+      document.getElementById("totalSessions").textContent = totalSessions;
+      document.getElementById("totalMinutes").textContent = totalMinutes;
+      document.getElementById("climbSessions").textContent = climbSessions;
+      document.getElementById("cardioSessions").textContent = cardioSessions;
+
+      const weekSessions = getCurrentWeekSessions();
+      const trainingCount = weekSessions.filter(s => s.type !== "Rest").length;
+      const percent = Math.min((trainingCount / 6) * 100, 100);
+
+      document.getElementById("weeklyBar").style.width = percent + "%";
+      document.getElementById("weeklyText").textContent = `${trainingCount} of 6 weekly training sessions completed.`;
+    }
+
+    function getCurrentWeekSessions() {
+      const now = new Date();
+      const start = new Date(now);
+      const day = start.getDay();
+      const diff = start.getDate() - day + (day === 0 ? -6 : 1);
+      start.setDate(diff);
+      start.setHours(0, 0, 0, 0);
+
+      const end = new Date(start);
+      end.setDate(start.getDate() + 7);
+
+      return sessions.filter(s => {
+        const d = new Date(s.date + "T00:00:00");
+        return d >= start && d < end;
+      });
+    }
+
+    function renderHistory() {
+      const history = document.getElementById("history");
+      history.innerHTML = "";
+
+      if (sessions.length === 0) {
+        history.innerHTML = `<p class="muted">No sessions saved yet.</p>`;
+        return;
+      }
+
+      const sorted = [...sessions].sort((a, b) => {
+        return new Date(b.date) - new Date(a.date);
+      });
+
+      sorted.forEach(session => {
+        const div = document.createElement("div");
+        div.className = "history-item";
+
+        const gradeText = session.grade ? `Grade: ${session.grade}` : "No grade";
+        const problemsText = session.problems ? ` · Problems: ${session.problems}` : "";
+        const distanceText = session.distance ? ` · Distance: ${session.distance} km` : "";
+        const notesText = session.notes ? `<p>${escapeHtml(session.notes)}</p>` : "";
+
+        div.innerHTML = `
+          <div class="history-item-top">
+            <div>
+              <h4>${escapeHtml(session.type)}</h4>
+              <small>${session.date}</small>
+            </div>
+            <button class="delete-btn" onclick="deleteSession(${session.id})">Delete</button>
+          </div>
+
+          <p>
+            ${gradeText} · ${session.duration || 0} min${problemsText}${distanceText} · ${session.rpe}
+          </p>
+
+          ${notesText}
+        `;
+
+        history.appendChild(div);
+      });
+    }
+
+    function renderGradeChart() {
+      const climbing = sessions
+        .filter(s => s.grade && gradeMap[s.grade] !== undefined)
+        .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+      const labels = climbing.map(s => s.date);
+      const data = climbing.map(s => gradeMap[s.grade]);
+
+      const ctx = document.getElementById("gradeChart").getContext("2d");
+
+      if (gradeChart) {
+        gradeChart.destroy();
+      }
+
+      gradeChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels,
+          datasets: [{
+            label: "Max Grade",
+            data,
+            tension: 0.25
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              min: 0,
+              max: 3,
+              ticks: {
+                stepSize: 1,
+                callback: value => "V" + value
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    function renderMinutesChart() {
+      const sorted = [...sessions].sort((a, b) => new Date(a.date) - new Date(b.date));
+      const labels = sorted.map(s => s.date);
+      const data = sorted.map(s => Number(s.duration || 0));
+
+      const ctx = document.getElementById("minutesChart").getContext("2d");
+
+      if (minutesChart) {
+        minutesChart.destroy();
+      }
+
+      minutesChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels,
+          datasets: [{
+            label: "Minutes",
+            data
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    renderAll();
+  </script>
+</body>
+</html>
